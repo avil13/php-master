@@ -110,8 +110,6 @@ nbproject/
 
 # SSL Certs
 etc/ssl/
-etc/nginx/conf.d
-www/
 
 # vuepress build output
 .vuepress/dist
@@ -140,3 +138,10 @@ www/
 
 vendor/*
 
+# # # # # # # # # # # # # # #
+#                           #
+#  SITES and NGINX configs  #
+#                           #
+# # # # # # # # # # # # # # #
+etc/nginx/conf.d
+www/
