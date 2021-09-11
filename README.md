@@ -11,15 +11,19 @@ Used by:
 - nginx
 - phpmyadmin
 
+You should already have docker and docker-compose.
+
 # Project structure
 
 - etc - folder with configs, including nginx
 - www - folder with sites.
-- make_site.sh - a script for quickly adding a new site folder to it, nginx config and generating an ssl certificate.
+- add_site.sh - a script for quickly adding a new site folder to it, nginx config and generating an ssl certificate.
 
-# Запуск
+# Start
 
-You should already have docker and docker-compose.
+Anything you might need can be done with the `make` command.
+
+## If you want to work with your hands
 
 At the root of the project
 
@@ -45,7 +49,7 @@ test.loc - used for example and test work
 
 # Adding a site
 
-The script `make_site.sh` is used to add a new site.
+The script `add_site.sh` is used to add a new site.
 
 After starting, it will create a folder with the domain name in `www` and a config to connect it to nginx and ssl certificate.
 
