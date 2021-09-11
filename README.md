@@ -2,36 +2,34 @@
 Simple docker-compose config to work with php.
 
 
-Простой в использовании репозиторий, если есть желание что то быстро попробовать на php.
+An easy-to-use repository if you want to quickly try something in php.
 
-Используется:
+Used by:
 
-- php:7.4
-- mariadb:10.5
+- php: 7.4
+- mariadb: 10.5
 - nginx
 - phpmyadmin
 
+# Project structure
 
-# Структура проекта
-
-- etc - папка с конфигами, включая nginx
-- www - папка с сайтами.
-- make_site.sh - скрипт для быстрого добавления новой папки сайта, к ней, конфига nginx и генерации сертификата ssl.
+- etc - folder with configs, including nginx
+- www - folder with sites.
+- make_site.sh - a script for quickly adding a new site folder to it, nginx config and generating an ssl certificate.
 
 # Запуск
 
-Уже должен иметься docker и docker-compose.
+You should already have docker and docker-compose.
 
-В корне проекта
+At the root of the project
 
 ```bash
-# поднимаем локальный контейнер
+# up the local container
 docker-compose up -d
 ```
+The default address is `http://0.0.0.0/`
 
-По умолчанию используется адрес `http://0.0.0.0/`
-
-Можно добавить домен через `/etc/hosts` (или аналоги в зависимости от ОС)
+You can add a domain in `/etc/hosts` (or analogs depending on the OS)
 
 ```
 # Host addresses
@@ -44,17 +42,15 @@ ff02::2    ip6-allrouters
 0.0.0.0    test.loc
 
 ```
+test.loc - used for example and test work
 
-test.loc - используется для примера и теста работы
+# Adding a site
 
-# Добавление сайта
+The script `make_site.sh` is used to add a new site.
 
-Для добавления нового сайта используется скрипт `make_site.sh`.
+After starting, it will create a folder with the domain name in `www` and a config to connect it to nginx and ssl certificate.
 
-После запуска, он создаст папку с названием домена в `www` и конфиг для ее подключения в nginx и ssl сертификат.
+After creating the site, it is recommended to restart docker-compose to apply the config in nginx.
 
-После создания сайта, рекомендуется перезапустить docker-compose что бы применить конфиг в nginx.
-
-> По умолчанию, все создаваемые файлы находятся в `.gitignore`. Это вы должны будете исправить самостоятельно
-
+> By default, all generated files are in `.gitignore`. You will have to fix it yourself.
 
