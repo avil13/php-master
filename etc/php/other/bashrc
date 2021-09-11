@@ -1,0 +1,36 @@
+alias ll="ls -lh"
+alias l="ls -lh"
+
+alias ..="cd .."
+alias ...="cd ../.."
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Generator Stuff
+alias g:m="php artisan generate:model"
+alias g:c="php artisan generate:controller"
+alias g:v="php artisan generate:view"
+alias g:s="php artisan generate:seed"
+alias g:mig="php artisan generate:migration"
+alias g:r="php artisan generate:resource"
+alias art="php artisan"
+
+alias cdump="composer dump-autoload -o"
+alias composer:dump="composer dump-autoload -o"
+alias db:reset="php artisan migrate:reset && php artisan migrate --seed"
+alias dusk="php artisan dusk"
+alias fresh="php artisan migrate:fresh"
+alias migrate="php artisan migrate"
+alias refresh="php artisan migrate:refresh"
+alias rollback="php artisan migrate:rollback"
+alias seed="php artisan db:seed"
+alias serve="php artisan serve --quiet &"
+
+alias phpunit="./vendor/bin/phpunit"
+alias pu="phpunit"
+alias puf="phpunit --filter"
+alias pud='phpunit --debug'
+
+PS1="\[\033[0;32m\h \[\033[0;36m\w\[\033[0;37m\$\n\$ \[\033[0m\]"

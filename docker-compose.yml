@@ -1,0 +1,68 @@
+version: '3'
+networks:
+  backend:
+    driver: bridge
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    volumes:
+      - "./etc/nginx/conf.d:/etc/nginx/conf.d"
+      - "./etc/ssl:/etc/ssl"
+      - "./www:/var/www"
+      - "./etc/logs/:/var/logs"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    depends_on:
+      - php
+      - mysqldb
+    networks:
+      - backend
+  php:
+    container_name: php
+    # See https://hub.docker.com/repository/docker/avil/php-fpm-7.4.10
+    image: avil/php-fpm-7.4.10:1.1
+    # build: # if you want to build your build
+    #   context: ./etc/php
+    restart: always
+    volumes:
+      - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+      - "./www:/var/www"
+    networks:
+      - backend
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8088:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=${MYSQL_HOST}
+      - PMA_USER=${MYSQL_USER}
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+      - PMA_PORTS=3306
+    restart: always
+    depends_on:
+      - mysqldb
+    networks:
+      - backend
+  mysqldb:
+    image: mariadb:10.5
+    container_name: ${MYSQL_HOST}
+    restart: always
+    env_file:
+      - ".env"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./data/db/mysql:/var/lib/mysql"
+    networks:
+      - backend
