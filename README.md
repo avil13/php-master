@@ -6,7 +6,7 @@ An easy-to-use repository if you want to quickly try something in php.
 
 Used by:
 
-- php: 7.4
+- php: 8.0
 - mariadb: 10.5
 - nginx
 - phpmyadmin

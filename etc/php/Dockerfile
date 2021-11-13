@@ -1,10 +1,11 @@
+# avil/php-fpm-8.0:2.0
 
-FROM php:7.4.10-fpm
+FROM php:8.0.12-fpm
 
 # Start as root
 USER root
 
-LABEL maintainer="NAME <you@mail.com>"
+LABEL maintainer="AVIL <a.1.3@mail.ru>"
 
 COPY ./php.ini /usr/local/etc/php/conf.d/php.ini
 COPY ./other/bashrc /root/.bashrc
@@ -53,8 +54,7 @@ RUN apt-get update && apt-get upgrade -y \
     pgsql \
     soap \
     sockets \
-    xmlrpc \
-    xsl \
+    xsl\
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \

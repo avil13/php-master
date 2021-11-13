@@ -23,7 +23,7 @@ services:
   php:
     container_name: php
     # See https://hub.docker.com/repository/docker/avil/php-fpm-7.4.10
-    image: avil/php-fpm-7.4.10:1.1
+    image: avil/php-fpm-8.0:2.0
     # build: # if you want to build your build
     #   context: ./etc/php
     restart: always
