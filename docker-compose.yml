@@ -22,8 +22,7 @@ services:
       - backend
   php:
     container_name: php
-    # See https://hub.docker.com/repository/docker/avil/php-fpm-7.4.10
-    image: avil/php-fpm-8.0:2.0
+    image: ${PHP_IMAGE}
     # build: # if you want to build your build
     #   context: ./etc/php
     restart: always
@@ -40,8 +39,8 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOST=${MYSQL_HOST}
-      - PMA_USER=${MYSQL_USER}
-      - PMA_PASSWORD=${MYSQL_PASSWORD}
+      - PMA_USER=${MYSQL_ROOT_USER}
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PMA_PORTS=3306
     restart: always
     depends_on:
@@ -56,6 +55,7 @@ services:
       - ".env"
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}

@@ -1,29 +1,30 @@
 # php-master
 Simple docker-compose config to work with php.
 
+---
 
 An easy-to-use repository if you want to quickly try something in php.
 
 Used by:
 
-- php: 8.0
+- php: 8.1
 - mariadb: 10.5
 - nginx
 - phpmyadmin
 
 You should already have docker and docker-compose.
 
-# Project structure
+## Project structure
 
-- etc - folder with configs, including nginx
-- www - folder with sites.
-- add_site.sh - a script for quickly adding a new site folder to it, nginx config and generating an ssl certificate.
+- `etc` - folder with configs, including nginx
+- `www` - folder with sites.
+- `add_site.sh` - a script for quickly adding a new site folder to it, nginx config and generating an ssl certificate.
 
-# Start
+## Start
 
 Anything you might need can be done with the `make` command.
 
-## If you want to work with your hands
+### If you want to work with your hands
 
 At the root of the project
 
@@ -37,17 +38,18 @@ You can add a domain in `/etc/hosts` (or analogs depending on the OS)
 
 ```
 # Host addresses
-127.0.0.1  localhost
-::1        localhost ip6-localhost ip6-loopback
-ff02::1    ip6-allnodes
-ff02::2    ip6-allrouters
 
 0.0.0.0    test.loc
 
 ```
 test.loc - used for example and test work
 
-# Adding a site
+## Adding a site
+
+```bash
+# bash
+make add
+```
 
 The script `add_site.sh` is used to add a new site.
 

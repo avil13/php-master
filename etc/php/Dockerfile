@@ -1,6 +1,6 @@
-# avil/php-fpm-8.0:2.0
+# avil/php-8.1:3
 
-FROM php:8.0.12-fpm
+FROM php:8.1-fpm
 
 # Start as root
 USER root
