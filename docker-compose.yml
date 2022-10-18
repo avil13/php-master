@@ -14,7 +14,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
+    restart: unless-stopped
     depends_on:
       - php
       - mysqldb
@@ -25,7 +25,7 @@ services:
     image: ${PHP_IMAGE}
     # build: # if you want to build your build
     #   context: ./etc/php
-    restart: always
+    restart: unless-stopped
     volumes:
       - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
       - "./www:/var/www"
@@ -42,7 +42,7 @@ services:
       - PMA_USER=${MYSQL_ROOT_USER}
       - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - PMA_PORTS=3306
-    restart: always
+    restart: unless-stopped
     depends_on:
       - mysqldb
     networks:
@@ -50,7 +50,7 @@ services:
   mysqldb:
     image: mariadb:10.5
     container_name: ${MYSQL_HOST}
-    restart: always
+    restart: unless-stopped
     env_file:
       - ".env"
     environment:
